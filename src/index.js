@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Board from './Board';
 
 const App = () => {
-  return <div>Hello</div>;
+  return <Board />;
 };
 
 ReactDOM.render(<App />, document.querySelector('#root'));
