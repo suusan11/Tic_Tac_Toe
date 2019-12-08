@@ -10,10 +10,34 @@ class Game extends React.Component {
     }
   }
 
+  handleClick(i) {
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      history: history.concat([{
+        squares: squares,
+      }]),
+      xIsNext: !this.state.xIsNext,
+    });
+    console.log("After: " + squares);
+  }
+
   render() {
     const history = this.state.history;
     const current = history[history.length - 1];
-    const winner = calculateWinner(current.square);
+    const winner = calculateWinner(current.squares);
+
+    let status;
+    if (winner) {
+      status = `Winner: ${winner}`;
+    } else {
+      status = `Next Player is: ${this.state.xIsNext ? 'X' : 'O'}`;
+    }
 
     return (
       <div className="game">
@@ -24,7 +48,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-
+          <div>{status}</div>
         </div>
       </div>
     );
