@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
-import Board from './Board';
+import Game from './Game';
 
 const App = () => {
-  return <Board />;
+  return <Game />;
 };
 
 ReactDOM.render(<App />, document.querySelector('#root'));
